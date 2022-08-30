@@ -4,32 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-
+import utils.Point2D;
 public class Day5 {
-
-    public static class Pair<U, V> {
-        public U first;
-        public V second;
-
-        public Pair(U first, V second){
-            this.first = first;
-            this.second = second;
-
-
-
-
-        }
-        @Override
-        public String toString(){
-
-
-
-            return "{"+this.first+" , "+this.second+"}";
-        }
-
-
-
-    }
 
 
     public static void main(String [] args) throws IOException {
