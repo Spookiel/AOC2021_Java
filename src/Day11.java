@@ -18,22 +18,9 @@ public class Day11 {
 
         BufferedReader br = new BufferedReader(new FileReader("Day11.in"));
 
-        String curline;
-
-        ArrayList<String> lines = new ArrayList<>();
-
-
-
-        while( (curline = br.readLine()) != null){
-            lines.add(curline);
-            width = curline.length();
-
-
-        }
-
+        ArrayList<String> lines = new ArrayList<>(br.lines().toList());
+        width = lines.get(0).length();
         height = lines.size();
-
-
         grid = new int[height][width];
 
 
