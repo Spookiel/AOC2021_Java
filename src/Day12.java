@@ -55,9 +55,10 @@ public class Day12 {
 
     public void run1(){
 
+        /*
         for(String node: graph.keySet()){
             System.out.println(node+ " "+ graph.get(node));
-        }
+        }*/
 
         //System.out.println(is_small("abc"));
 
@@ -95,7 +96,7 @@ public class Day12 {
 
                     if(pos.equals("end")){
 
-                        System.out.println(cop);
+                        //System.out.println(cop);
                         count++;
                     }else{
                         //System.out.println("ADDED "+cop);
@@ -142,7 +143,7 @@ public class Day12 {
 
         while(!q.isEmpty()){
             //System.out.println(q + " CURRENT STATE");
-            ArrayList<String> ne = q.remove(0);
+            ArrayList<String> ne = q.remove(q.size()-1);
 
             String last = ne.get(ne.size()-1);
             //System.out.println("REMOVED "+ne+ " LAST: "+last);
@@ -161,10 +162,10 @@ public class Day12 {
                             // Don't change the flag;
                             cop.add(pos);
                             if(pos.equals("end")){
-                                System.out.println(cop);
+                                //System.out.println(cop);
                                 count++;
                             }else{
-                                q.add(new ArrayList<>(cop));
+                                q.add(cop);
                             }
 
 
@@ -172,10 +173,10 @@ public class Day12 {
                             cop.set(0, "1");
                             cop.add(pos);
                             if(pos.equals("end")){
-                                System.out.println(cop);
+                                //System.out.println(cop);
                                 count++;
                             }else{
-                                q.add(new ArrayList<>(cop));
+                                q.add(cop);
                             }
 
 
@@ -193,11 +194,11 @@ public class Day12 {
 
                             if(pos.equals("end")){
 
-                                System.out.println(cop);
+                                //System.out.println(cop);
                                 count++;
                             }else{
                                 //System.out.println("ADDED "+cop);
-                                q.add(new ArrayList<>(cop));
+                                q.add(cop);
                             }
 
 
@@ -213,7 +214,7 @@ public class Day12 {
                 else if(!is_small(pos)){
                     ArrayList<String> cop = new ArrayList<>(ne);
                     cop.add(pos);
-                    q.add(new ArrayList<>(cop));
+                    q.add(cop);
 
                 }
 
@@ -242,10 +243,16 @@ public class Day12 {
 
 
     public static void main(String[] args) throws IOException{
+
+        final long startTime = System.currentTimeMillis();
+
         Day12 day = new Day12();
         day.parse();
         day.run1();
         day.run2();
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println("EXECUTION TIME: "+(endTime-startTime)+ " MILLISECONDS");
 
     }
 }
