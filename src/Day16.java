@@ -24,6 +24,9 @@ public class Day16 {
             System.out.println(fint);
             if(fint < 8) bin = "0"+bin;
             if(fint < 4) bin = "0"+bin;
+            if(fint < 2) bin = "0"+bin;
+            if(fint < 1) bin = "0"+bin;
+            if(fint == 0) bin = "0"+bin;
 
 
         } catch(Exception e){
@@ -81,7 +84,7 @@ public class Day16 {
 
 
             }
-            System.out.println(Long.parseLong(group, 2));
+            //System.out.println(Long.parseLong(group, 2)+ " LITERAL");
 
             return Long.parseLong(group, 2);
 
@@ -124,11 +127,15 @@ public class Day16 {
 
 
 
-            int it = Integer.parseInt(TypeID);
+            int it = Integer.parseInt(TypeID, 2);
+
+            //System.out.println(it+ " OPERATOR");
 
             if(it == 0){
                 long tot = 0;
                 for(long add: subs) tot += add;
+
+                System.out.println("ADD "+tot+ " LEN:"+subs.size()+" "+subs);
                 return tot;
 
             }
@@ -136,26 +143,34 @@ public class Day16 {
             if(it == 1){
                 long tot = 1;
                 for(long add: subs) tot *= add;
+                System.out.println("MUL "+tot+ " LEN:"+subs.size()+" "+subs);
                 return tot;
 
             }
 
             if(it == 2){
-                long tot = 0;
+                long tot = Long.MAX_VALUE;
                 for(long add: subs) tot = Math.min(add, tot);
+                System.out.println(subs+ " MINIMUM");
+                System.out.println(tot);
                 return tot;
             }
 
             if(it == 3){
-                long tot = 0;
+                long tot = -1;
                 for(long add: subs) tot = Math.max(add, tot);
+                System.out.println(subs+ " MAX");
+                System.out.println(tot);
                 return tot;
             }
 
             if(it == 5){
+
                 if(subs.get(0) > subs.get(1)){
+                    //System.out.println("GT "+subs.get(0)+":"+subs.get(1)+":1");
                     return 1;
                 }else{
+                    //System.out.println("GT "+subs.get(0)+":"+subs.get(1)+":0");
                     return 0;
                 }
 
@@ -163,8 +178,10 @@ public class Day16 {
 
             if(it == 6){
                 if(subs.get(0) < subs.get(1)){
+                    //System.out.println("LT "+subs.get(0)+":"+subs.get(1)+":1");
                     return 1;
                 }else{
+                    //System.out.println("LT "+subs.get(0)+":"+subs.get(1)+":0");
                     return 0;
                 }
 
@@ -172,8 +189,10 @@ public class Day16 {
 
             if(it == 7){
                 if(subs.get(0).equals(subs.get(1))){
+                    //System.out.println("EQ "+subs.get(0)+":"+subs.get(1)+":1");
                     return 1;
                 }else{
+                    //System.out.println("EQ "+subs.get(0)+":"+subs.get(1)+":0");
                     return 0;
                 }
 
@@ -219,3 +238,12 @@ public class Day16 {
 
     }
 }
+
+//14587208988
+//14587208988
+//16387208988
+//001000000000001011010110000110011100010010000
+//0000 0100
+//VVVTTT
+//10000000000
+//10000000000
