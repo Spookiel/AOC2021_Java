@@ -35,9 +35,91 @@ public class Day17 {
 
     }
 
+
+
+    public ArrayList<Integer> sim(int xvel, int yvel){
+        ArrayList<Integer> ret = new ArrayList<>();
+        ret.add(0);
+        ret.add(0);
+
+        int xpos = 0;
+        int ypos = 0;
+
+        int mheight = -10000;
+
+        while(ypos > y1){
+            xpos += xvel;
+            ypos += yvel;
+
+
+            mheight = Math.max(mheight, ypos);
+            if(xvel > 0) xvel--;
+
+            yvel -= 1;
+
+            if(check_in(xpos, ypos)) ret.set(0, 1);
+
+
+
+
+        }
+
+        ret.set(1, mheight);
+        return ret;
+
+
+
+
+    }
+
+
+
+    public void run1(){
+
+
+        int bheight = -1;
+
+        for(int xvel=0; xvel < 50; xvel++){
+            for(int yvel = -100; yvel < 250; yvel++){
+                ArrayList<Integer> ans = sim(xvel, yvel);
+                if(ans.get(0) == 1 && ans.get(1) > bheight){
+                    bheight = ans.get(1);
+
+
+                }
+
+
+            }
+        }
+
+        System.out.println(bheight);
+
+
+
+    }
+
+    public void run2(){
+        int tot = 0;
+
+        for(int xvel=0; xvel < 500; xvel++){
+            for(int yvel = -200; yvel < 250; yvel++){
+                ArrayList<Integer> ans = sim(xvel, yvel);
+                if(ans.get(0) == 1){
+                    tot++;
+
+
+                }
+
+
+            }
+        }
+
+        System.out.println(tot);
+
+    }
     public boolean check_in(int x, int y){
 
-
+        return x1 <= x && x <= x2 && y1 <= y && y <= y2;
     }
 
 
@@ -45,7 +127,8 @@ public class Day17 {
 
         Day17 day = new Day17();
         day.parse();
-
+        day.run1();
+        day.run2();
 
     }
 
